@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
+    const [jobs, setJobs] = useState([]);
     const [user, setUser]= useState(null)
     const createUser = (email, password)=>{
         setLoading(true);
@@ -39,11 +40,13 @@ const AuthProvider = ({children}) => {
         signInUser,
         signInWithGoogle,
         signOutUser,
+        jobs,
+        setJobs
     }
     return (
-        <AuthContext value={authInfo}>
+        <AuthContext.Provider value={authInfo}>
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     );
 };
 
